@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura no Castelo Encantado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="story">
+        <h1>Aventura no Castelo Encantado</h1>
+        <p>Você encontra um majestoso castelo no meio de uma floresta densa. À sua frente, há duas portas: uma de madeira antiga e uma de ferro forjado. Você pode:</p>
+        <div id="options">
+            <span class="option" onclick="chooseDoor('wood')">Abrir a porta de madeira</span>
+            <span class="option" onclick="chooseDoor('iron')">Abrir a porta de ferro</span>
+        </div>
+    </div>
+
+    <div id="result" class="hidden"></div>
+
+    <script>
+        function chooseDoor(door) {
+            const storyDiv = document.getElementById('story');
+            const resultDiv = document.getElementById('result');
+
+            if (door === 'wood') {
+                storyDiv.innerHTML = `
+                    <h1>O Salão das Estátuas</h1>
+                    <p>Você abre a porta de madeira e entra em um salão cheio de estátuas de pedra. Cada estátua tem um olhar estranho, como se estivesse observando você. No centro do salão, há uma caixa e uma chave em cima de um pedestal. Você pode:</p>
+                    <span class="option" onclick="openBox()">Abrir a caixa</span>
+                    <span class="option" onclick="takeKey()">Pegar a chave</span>
+                `;
+            } else if (door === 'iron') {
+                storyDiv.innerHTML = `
+                    <h1>A Biblioteca Secreta</h1>
+                    <p>Você abre a porta de ferro e entra em uma biblioteca antiga e empoeirada. Há muitas prateleiras de livros, alguns dos quais parecem ser muito antigos. Em um canto, há um livro aberto e um pergaminho antigo. Você pode:</p>
+                    <span class="option" onclick="readBook()">Ler o livro</span>
+                    <span class="option" onclick="inspectScroll()">Inspecionar o pergaminho</span>
+                `;
+            }
+            resultDiv.classList.add('hidden');
+        }
+
+        function openBox() {
+            document.getElementById('story').innerHTML = `
+                <h1>O Tesouro Escondido</h1>
+                <p>Você abre a caixa e encontra um mapa antigo. O mapa leva a um esconderijo no castelo. Ao seguir o mapa, você encontra um tesouro escondido! Parabéns, você encontrou o tesouro!</p>
+                <div class="option" onclick="restart()">Voltar ao início</div>
+            `;
+            document.getElementById('result').classList.add('hidden');
+        }
+
+        function takeKey() {
+            document.getElementById('story').innerHTML = `
+                <h1>A Sala Secreta</h1>
+                <p>Você pega a chave e encontra uma porta secreta no fundo do salão. A chave abre a porta e você entra em uma sala secreta cheia de artefatos mágicos. Você encontra um artefato poderoso e se torna o guardião do castelo!</p>
+                <div class="option" onclick="restart()">Voltar ao início</div>
+            `;
+            document.getElementById('result').classList.add('hidden');
+        }
+
+        function readBook() {
+            document.getElementById('story').innerHTML = `
+                <h1>O Livro de Feitiços</h1>
+                <p>Você lê o livro e descobre que ele contém feitiços poderosos. Você pode usar um feitiço para resolver um enigma do castelo ou para escapar dele. Você decide usar um feitiço para escapar e retorna à entrada do castelo.</p>
+                <div class="option" onclick="restart()">Voltar ao início</div>
+            `;
+            document.getElementById('result').classList.add('hidden');
+        }
+
+        function inspectScroll() {
+            document.getElementById('story').innerHTML = `
+                <h1>O Pergaminho Antigo</h1>
+                <p>Você inspeciona o pergaminho e descobre que ele contém instruções para abrir um cofre escondido na biblioteca. Ao abrir o cofre, você encontra um artefato mágico que concede sabedoria eterna. Você se torna o sábio do castelo!</p>
+                <div class="option" onclick="restart()">Voltar ao início</div>
+            `;
+            document.getElementById('result').classList.add('hidden');
+        }
+
+        function restart() {
+            document.getElementById('story').innerHTML = `
+                <h1>Aventura no Castelo Encantado</h1>
+                <p>Você encontra um majestoso castelo no meio de uma floresta densa. À sua frente, há duas portas: uma de madeira antiga e uma de ferro forjado. Você pode:</p>
+                <div id="options">
+                    <span class="option" onclick="chooseDoor('wood')">Abrir a porta de madeira</span>
+                    <span class="option" onclick="chooseDoor('iron')">Abrir a porta de ferro</span>
+                </div>
+            `;
+            document.getElementById('result').classList.add('hidden');
+        }
+
+        // Inicializar com a história de início
+        restart();
+    </script>
+
+</body>
+</html>
